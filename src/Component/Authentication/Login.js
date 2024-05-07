@@ -2,21 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; 
 
-const SignUp = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      console.error('Passwords do not match');
-      return;
-    }
-    
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=YOUR_API_KEY', {
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=YOUR_API_KEY', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -40,7 +34,7 @@ const SignUp = () => {
     <grid className="Grid">
     <div className="container"> 
       <div > 
-        <h1>Sign Up</h1>
+        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="email"
@@ -58,18 +52,10 @@ const SignUp = () => {
             required
           />
           <br />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <br />
-          <button type="submit">Sign Up</button>
+          <button type="submit">Login</button>
         </form>
         <div>
-          <a href="/login">Have an account? Login</a>
+          <a href="#">Don't have an account? Sign Up</a>
         </div>
       </div>
     </div>
@@ -77,4 +63,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
