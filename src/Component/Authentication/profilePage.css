@@ -1,0 +1,58 @@
+.profile-page {
+    padding: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .quote {
+    font-size: 18px;
+  }
+  
+  .profile-completion {
+    display: flex;
+    align-items: center;
+  }
+  
+  .completion-text {
+    margin-right: 20px;
+  }
+  
+  .complete-now {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .red-line {
+    height: 2px;
+    background-color: red;
+    margin-bottom: 20px;
+  }
+  
+  .profile-form {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .form-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .icon {
+    width: 20px;
+    margin-right: 10px;
+  }
+  

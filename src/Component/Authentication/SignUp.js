@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Header';
 import './SignUp.css'; 
 
 const SignUp = () => {
@@ -16,7 +17,7 @@ const SignUp = () => {
       return;
     }
     
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=YOUR_API_KEY', {
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -29,7 +30,7 @@ const SignUp = () => {
     })
     .then(response => response.json())
     .then(data => {
-      navigate('/');
+      navigate('/home');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -37,7 +38,8 @@ const SignUp = () => {
   };
 
   return (
-    <grid className="Grid">
+    <div>
+      <Header />
     <div className="container"> 
       <div > 
         <h1>Sign Up</h1>
@@ -73,7 +75,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-    </grid>
+    </div>
   );
 };
 
