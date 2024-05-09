@@ -1,13 +1,13 @@
 import './App.css';
 import SignUp from './Component/Authentication/SignUp';
-import Header from './Component/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  Route, Routes,Navigate } from 'react-router-dom';
+import {  Route, Routes} from 'react-router-dom';
 import Home from './Component/Home';
 import About from './Component/About';
 import Login from './Component/Authentication/Login';
 import WelcomePage from './Component/Authentication/WelcomePage';
 import ProfilePage from './Component/Authentication/ProfilePage';
+import ForgotPassword from './Component/Authentication/ForgotPassword';
 
 function App() {
   return ( 
@@ -22,6 +22,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/profilepage" element={<ProfilePage />} />        
+        <Route path="/forgotpassword" element={<ForgotPassword />} />        
       </Routes> 
     </div>
   );

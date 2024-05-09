@@ -2,11 +2,9 @@ import React, { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import './SignUp.css'; 
-import { red } from '@mui/material/colors';
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const loginctx=useContext(AuthContext)
@@ -14,12 +12,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw', {
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw', {
       method: 'POST',
       body: JSON.stringify({
+        requestType:"PASSWORD_RESET",
         email: email,
-        password: password,
-        returnSecureToken: true
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -27,9 +24,7 @@ const Login = () => {
     })
     .then(response => response.json())
     .then(data => {
-      loginctx.login(data.idToken);
-      localStorage.setItem("token", data.idToken);
-      navigate('/welcome');
+      navigate('/login');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -40,8 +35,9 @@ const Login = () => {
     <div>
     <div className="container"> 
       <div > 
-        <h1>Login</h1>
+        <h1>Reset Password</h1>
         <form onSubmit={handleSubmit}>
+          <p>Enter the mail which you have registered</p>
           <input
             type="email"
             placeholder="Email"
@@ -50,26 +46,12 @@ const Login = () => {
             required
           />
           <br />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <div>
-            <a href="/forgotpassword" style={{color: 'red'}}>Forgot Password?</a>
-          </div>
-          <br />
-          <button type="submit">Login</button>
+          <button type="submit">Send Link</button>
         </form>
-        <div>
-          <a href="/signup">Don't have an account? Sign Up</a>
-        </div>
       </div>
     </div>
     </div>
   );
 };
 
-export default Login;
+export default ForgotPassword;

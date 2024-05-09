@@ -38,11 +38,10 @@ body {
     }
   
     .container form button {
-      margin-top: 10px; /* Add spacing above the button */
-      width: 10%; /* Make the button cover the entire width */
-      background-color: blue; /* Change button color to blue */
-      color: white; /* Change button text color to white */
-      border: none; /* Remove button border */
-      padding: 10px; /* Add padding to the button */
-      border-radius: 20px; /* Make the button curved at the ends */
+      margin-top: 10px; 
+      width: 20%; 
+      background-color: blue; 
+      color: white; 
+      padding: 10px;
+      border-radius: 20px; 
     }
