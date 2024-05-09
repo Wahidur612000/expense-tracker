@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 import './SignUp.css'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const loginctx=useContext(AuthContext)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +26,8 @@ const Login = () => {
     })
     .then(response => response.json())
     .then(data => {
+      loginctx.login(data.idToken);
+      localStorage.setItem("token", data.idToken);
       navigate('/welcome');
     })
     .catch(error => {

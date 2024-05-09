@@ -28,8 +28,19 @@
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
+    margin-left: 10px;
   }
-  
+  .complete-now1 {
+    background-color: rgb(243, 5, 5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
   .red-line {
     height: 2px;
     background-color: red;
@@ -37,9 +48,11 @@
   }
   
   .profile-form {
-    background-color: #f0f0f0;
+    background-color: #fffffff0;
     padding: 20px;
     border-radius: 10px;
+    width: 700px;
+    margin-left: 700px;
   }
   
   .form-title {
@@ -49,10 +62,17 @@
   
   .input-group {
     margin-bottom: 10px;
+    margin-left: 10px;
+    display: inline;
   }
   
   .icon {
     width: 20px;
     margin-right: 10px;
+  }
+
+  .button-group {
+    margin-top: 10px;
+    margin-left: 10px;
   }
   

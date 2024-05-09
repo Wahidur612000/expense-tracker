@@ -10,7 +10,7 @@ import WelcomePage from './Component/Authentication/WelcomePage';
 import ProfilePage from './Component/Authentication/ProfilePage';
 
 function App() {
-  return (
+  return ( 
     <div className="App">
       
       
