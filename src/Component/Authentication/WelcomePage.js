@@ -32,19 +32,28 @@ const WelcomePage = () => {
     });
   }
 
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+    navigate('/login')
+  }
+
   return (
     <div >
       <div className="welcome-page" >
         <div className="welcome-header">
           <div className="welcome-title">Welcome to Expense Tracker</div>
           <div className="profile-incomplete">
-            Your Profile is Incomplete.
+          <button className="complete-button1" onClick={handleVeryfyEmail}>
+                Verify Email
+            </button>
+            <button className="complete-button1" onClick={handleLogout}>
+               Logout
+            </button>
+            <div>Your Profile is Incomplete.</div>
             <button className="complete-button" onClick={handleCompleteProfile}>
               Complete now
             </button>
-            <button className="complete-button1" onClick={handleVeryfyEmail}>
-                Verify Email
-            </button>
+            
           </div>
         </div>
       </div>

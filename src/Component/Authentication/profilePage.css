@@ -31,7 +31,16 @@
     margin-left: 10px;
   }
   .complete-now1 {
-    background-color: rgb(243, 5, 5);
+    background-color: rgb(252, 8, 8);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .complete-now2 {
+    background-color: rgb(56, 151, 27);
     color: white;
     border: none;
     padding: 5px 10px;

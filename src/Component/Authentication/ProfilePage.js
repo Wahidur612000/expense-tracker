@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './profilePage.css'; 
 
 const ProfilePage = () => {
   const [fullName, setFullName] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
+  const navigate=useNavigate();
   
 
   const handleUpdateProfile = () => {
@@ -94,6 +96,11 @@ const ProfilePage = () => {
     });
   };
 
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+    navigate('/login')
+  }
+
   return (
     <div className="profile-page">
       <div className="profile-header">
@@ -101,6 +108,7 @@ const ProfilePage = () => {
         <div className="profile-completion">
           <div className="completion-text">Your Profile is only 64% updated.</div>
           <button className="complete-now" onClick={handleUpdateProfile}>Complete now</button>
+          <button className="complete-now1" onClick={handleLogout}>Logout</button>
         </div>
       </div>
       <div className="red-line"></div>
@@ -126,7 +134,7 @@ const ProfilePage = () => {
         </div>
         <div className="button-group">
           <button className="complete-now1" onClick={handleUpdateProfile}>Update</button>
-          <button className="complete-now1" onClick={handleGetProfile}>Details</button>
+          <button className="complete-now2" onClick={handleGetProfile}>Details</button>
         </div>
       </div>
     </div>
