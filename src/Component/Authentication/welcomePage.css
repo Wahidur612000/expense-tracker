@@ -24,6 +24,14 @@
     cursor: pointer;
     height: -10px;
   }
+  .complete-button1 {
+    background-color: rgb(247, 6, 6);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    height: -10px;
+  }
   
   .profile-incomplete {
     margin-top: 20px;

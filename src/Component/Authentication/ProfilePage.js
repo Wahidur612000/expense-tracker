@@ -45,6 +45,53 @@ const ProfilePage = () => {
       // Handle error
       console.error('Error updating profile:', error);
     });
+    setFullName('')
+    setPhotoUrl('')
+  };
+
+  const handleGetProfile = () => {
+    const token=localStorage.getItem('token');
+
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw`, 
+      {
+        method: "POST",
+        body: JSON.stringify({
+          idToken: token,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return res.json().then((data) => {
+
+          let errormessage = "Authentication Failed";
+          if (data && data.error && data.error.message) {
+            errormessage = data.error.message;
+          }
+
+          throw new Error(errormessage);
+        });
+      }
+    })
+    .then((data) => {
+      console.log("Get profile page---", data);
+      if (data.users && data.users.length > 0) {
+        const user = data.users[0];
+        setFullName(user.displayName);
+        setPhotoUrl(user.photoUrl);
+      } else {
+        throw new Error("User data not found");
+      }
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error updating profile:', error);
+    });
   };
 
   return (
@@ -79,7 +126,7 @@ const ProfilePage = () => {
         </div>
         <div className="button-group">
           <button className="complete-now1" onClick={handleUpdateProfile}>Update</button>
-          <button className="complete-now1" >Cancel</button>
+          <button className="complete-now1" onClick={handleGetProfile}>Details</button>
         </div>
       </div>
     </div>
