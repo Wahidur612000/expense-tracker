@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./welcomePage.css";
+import ExpenseTracker from "../ExpenseTracker";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const WelcomePage = () => {
         </div>
       </div>
       <div className="red-line"></div>
+      <ExpenseTracker />
     </div>
   );
 };
