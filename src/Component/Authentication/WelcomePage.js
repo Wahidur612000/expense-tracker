@@ -1,10 +1,13 @@
-import React from "react";
+import React,{useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import "./welcomePage.css";
 import ExpenseTracker from "../ExpenseTracker";
+import { AuthContext } from "../context/AuthProvider";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
+  const { isLoggedIn, logout } = useContext(AuthContext);
+  console.log('welcome',isLoggedIn)
   const handleCompleteProfile = (event) => {
     event.preventDefault();
     navigate("/profilepage");
@@ -59,7 +62,7 @@ const WelcomePage = () => {
         </div>
       </div>
       <div className="red-line"></div>
-      <ExpenseTracker />
+      {isLoggedIn && <ExpenseTracker />}
     </div>
   );
 };

@@ -39,6 +39,8 @@ const ExpenseTracker = () => {
   // Calculate savings
   const savings = totalIncome - totalExpense;
 
+  const savingsClass = savings >= 0 ? 'positive' : 'negative';
+
   return (
     <div className="expense-tracker">
       <h2>Add Expense</h2>
@@ -58,6 +60,7 @@ const ExpenseTracker = () => {
           <option value="Food">Food</option>
           <option value="Transport">Transport</option>
           <option value="Entertainment">Entertainment</option>
+          <option value="Salary">Salary</option>
           {/* Add more options as needed */}
         </select>
 
@@ -67,7 +70,7 @@ const ExpenseTracker = () => {
           <option value="Income">Income</option>
         </select>
 
-        <button type="submit">Add Expense</button>
+        <button type="submit">Add</button>
       </form>
 
       <h2>Expenses</h2>
@@ -75,7 +78,6 @@ const ExpenseTracker = () => {
         <thead>
           <tr>
             <th>Date</th>
-            <th>Amount</th>
             <th>Description</th>
             <th>Category</th>
             <th>Income</th>
@@ -87,7 +89,6 @@ const ExpenseTracker = () => {
           {expenses.map((expense, index) => (
             <tr key={index}>
               <td>{expense.date}</td>
-              <td>{expense.amount}</td>
               <td>{expense.description}</td>
               <td>{expense.category}</td>
               <td>{expense.type === 'Income' ? expense.amount : ''}</td>
@@ -96,13 +97,13 @@ const ExpenseTracker = () => {
           ))}
           {/* Total rows */}
           <tr>
-            <td colSpan="4">Total</td>
+            <td colSpan="3">Total</td>
             <td>{totalIncome}</td>
             <td>{totalExpense}</td>
           </tr>
           <tr>
-            <td colSpan="5">Savings</td>
-            <td>{savings}</td>
+            <td colSpan="4">Savings</td>
+            <td className={savingsClass}>{savings}</td>
           </tr>
         </tbody>
       </table>

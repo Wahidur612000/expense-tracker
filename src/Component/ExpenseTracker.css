@@ -38,6 +38,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 20px;
+    margin-left: 10px;
   }
   
   button:hover {
@@ -50,16 +51,27 @@
   }
   
   th, td {
-    border: 1px solid #0a0909;
+    border: 1px solid #0b0b0b;
     padding: 8px;
     text-align: left;
   }
   
   th {
-    background-color: #f2f2f2;
+    border: 1px solid white;
+    background-color: rgb(10, 10, 10); 
+    color: white; 
   }
+  
   
   tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+  }
+
+  .positive {
+    color: green;
+  }
+  
+  .negative {
+    color: red;
   }
   
