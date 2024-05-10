@@ -156,6 +156,7 @@ const ExpenseTracker = () => {
     setDescription('');
     setCategory('');
     setType('Expense');
+    alert('Expense added successfully!');
   };
 
   useEffect(() => {
@@ -171,10 +172,81 @@ const ExpenseTracker = () => {
       if (data) {
         const fetchedExpenses = Object.keys(data).map(key => ({ id: key, ...data[key] }));
         setExpenses(fetchedExpenses);
+        console.log('get expense',data)
       }
     })
     .catch(error => console.error('Error fetching expenses:', error));
   };
+
+  const handleDelete = (id) => {
+    // DELETE request to Firebase
+    fetch(`https://expensetracker-db9b3-default-rtdb.asia-southeast1.firebasedatabase.app/expenses/${id}.json`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (response.ok) {
+        // If successful, remove the expense from the state
+        setExpenses(expenses.filter(expense => expense.id !== id));
+        alert('Expense deleted successfully!');
+      } else {
+        throw new Error('Failed to delete expense');
+      }
+    })
+    .catch(error => {
+      console.error('Error deleting expense:', error);
+      alert('Failed to delete expense. Please try again.');
+    });
+  };
+
+  const handleUpdate = (id, updatedExpense) => {
+    // Find the expense to update in the expenses array
+    const expenseToUpdate = expenses.find(expense => expense.id === id);
+  
+    // If the expense is found
+    if (expenseToUpdate) {
+      // Create a copy of the updated expense object
+      const updatedExpenseObject = {
+        date: updatedExpense.date || expenseToUpdate.date, // Use updated date if provided, otherwise keep the original date
+        amount: updatedExpense.amount || expenseToUpdate.amount, // Use updated amount if provided, otherwise keep the original amount
+        description: updatedExpense.description || expenseToUpdate.description, // Use updated description if provided, otherwise keep the original description
+        category: updatedExpense.category || expenseToUpdate.category, // Use updated category if provided, otherwise keep the original category
+        type: updatedExpense.type || expenseToUpdate.type // Use updated type if provided, otherwise keep the original type
+      };
+  
+      // PUT request to update expense
+      fetch(`https://expensetracker-db9b3-default-rtdb.asia-southeast1.firebasedatabase.app/expenses/${id}.json`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedExpenseObject),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // If successful, update the expense in the state
+          const updatedExpenses = expenses.map(expense => {
+            if (expense.id === id) {
+              return { ...expense, ...updatedExpenseObject }; // Merge the updated expense data
+            }
+            return expense;
+          });
+          setExpenses(updatedExpenses);
+          alert('Expense updated successfully!');
+        } else {
+          throw new Error('Failed to update expense');
+        }
+      })
+      .catch(error => {
+        console.error('Error updating expense:', error);
+        alert('Failed to update expense. Please try again.');
+      });
+    } else {
+      alert('Expense not found!');
+    }
+  };
+  
+  
+
 
   // Calculate total income and total expense
   const totalIncome = expenses
@@ -210,6 +282,7 @@ const ExpenseTracker = () => {
           <option value="Transport">Transport</option>
           <option value="Entertainment">Entertainment</option>
           <option value="Salary">Salary</option>
+          <option value="Others">Others</option>
         </select>
 
         <label htmlFor="type">Type:</label>
@@ -230,6 +303,7 @@ const ExpenseTracker = () => {
             <th>Category</th>
             <th>Income</th>
             <th>Expense</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -241,6 +315,10 @@ const ExpenseTracker = () => {
               <td>{expense.category}</td>
               <td>{expense.type === 'Income' ? expense.amount : ''}</td>
               <td>{expense.type === 'Expense' ? expense.amount : ''}</td>
+              <td>
+                <button onClick={() => handleUpdate(expense.id,expense)}>Update</button>
+                <button onClick={() => handleDelete(expense.id)}>Delete</button>
+              </td>
             </tr>
           ))}
           {/* Total rows */}
@@ -248,10 +326,12 @@ const ExpenseTracker = () => {
             <td colSpan="3">Total</td>
             <td>{totalIncome}</td>
             <td>{totalExpense}</td>
+            <td></td>
           </tr>
           <tr>
             <td colSpan="4">Savings</td>
             <td className={savingsClass}>{savings}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
