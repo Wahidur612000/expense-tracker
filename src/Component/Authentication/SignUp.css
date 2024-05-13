@@ -25,11 +25,12 @@ body {
     }
     
     .container form {
-      margin-bottom: 20px; 
+      margin-bottom: 30px;
+      border: rgb(180, 12, 12); 
     }
     
     .container form input {
-      margin-bottom: 20px; 
+      margin-bottom: 10px; 
       padding: 15px;
     }
     
@@ -39,7 +40,7 @@ body {
   
     .container form button {
       margin-top: 10px; 
-      width: 20%; 
+      width: 60%; 
       background-color: blue; 
       color: white; 
       padding: 10px;

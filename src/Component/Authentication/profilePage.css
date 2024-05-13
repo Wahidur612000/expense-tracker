@@ -62,6 +62,7 @@
     border-radius: 10px;
     width: 700px;
     margin-left: 700px;
+    border: solid black;
   }
   
   .form-title {

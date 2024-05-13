@@ -123,6 +123,7 @@ const ProfilePage = () => {
             onChange={(e) => setFullName(e.target.value)}
           />
         </div>
+        <br />
         <div className="input-group">
           <img src="https://img.icons8.com/?size=80&id=7gn1JUOaj7KZ&format=png"  className="icon" />
           <input

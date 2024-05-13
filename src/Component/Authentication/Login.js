@@ -2,12 +2,14 @@ import React, { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import './SignUp.css'; 
-import { red } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+import { login } from '../Reducer/authSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginctx=useContext(AuthContext)
 
@@ -27,8 +29,10 @@ const Login = () => {
     })
     .then(response => response.json())
     .then(data => {
-      loginctx.login(data.idToken);
+      //loginctx.loginHandler(data.idToken);
       localStorage.setItem("token", data.idToken);
+      console.log('inlogin',data)
+      dispatch(login());
       navigate('/welcome');
     })
     .catch(error => {

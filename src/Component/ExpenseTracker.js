@@ -148,6 +148,13 @@ const savingsClass = savings >= 0 ? 'positive' : 'negative';
 
   return (
     <div className="expense-tracker">
+      {totalExpense >= 10000 && (
+  <div className="premium-alert">
+    <button className="premium-button">
+      Activate Premium!!!
+    </button>
+  </div>
+)}
       <h2>Add Expense</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="date">Date:</label>
