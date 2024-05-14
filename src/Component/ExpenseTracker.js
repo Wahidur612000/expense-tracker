@@ -1,15 +1,15 @@
-import React, { useState, useEffect,useReducer } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector} from "react-redux";
 import "./ExpenseTracker.css";
-import themeReducer from "./Reducer/themeReducer";
 
 
-const ExpenseTracker = (isLightMode) => {
+const ExpenseTracker = () => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [expenses, setExpenses] = useState([]);
-  const [selectedExpense, setSelectedExpense] = useState(null); 
+  const [selectedExpense, setSelectedExpense] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -133,19 +133,17 @@ const ExpenseTracker = (isLightMode) => {
     setAmount("");
     setDescription("");
     setCategory("");
-    setSelectedExpense(null); // Reset selected expense
+    setSelectedExpense(null);
   };
 
   const handleEdit = (expense) => {
-    // When edit button is clicked, populate the form fields with the selected expense data
     setDate(expense.date);
     setAmount(expense.amount);
     setDescription(expense.description);
     setCategory(expense.category);
-    setSelectedExpense(expense); // Set selected expense for editing
+    setSelectedExpense(expense);
   };
 
-  // Calculate total income and total expense
   const totalIncome = expenses
     .filter((expense) => expense.category === "Salary")
     .reduce((total, expense) => total + expense.amount, 0);
@@ -154,15 +152,11 @@ const ExpenseTracker = (isLightMode) => {
     .filter((expense) => expense.category !== "Salary")
     .reduce((total, expense) => total + expense.amount, 0);
 
-  // Calculate savings
   const savings = totalIncome - totalExpense;
-
-  // Determine savings class
   const savingsClass = savings >= 0 ? "positive" : "negative";
 
   const downloadExpenses = () => {
-    const csvContent = "data:text/csv;charset=utf-8,"
-      + expenses.map(e => `${e.date},${e.amount},${e.description},${e.category}`).join("\n");
+    const csvContent = "data:text/csv;charset=utf-8," + expenses.map(e => `${e.date},${e.amount},${e.description},${e.category}`).join("\n");
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -171,9 +165,12 @@ const ExpenseTracker = (isLightMode) => {
     link.click();
   };
 
+  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+
   return (
-    <div className="expense-tracker">
+    <div className={`expense-tracker ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>
       <h2>Add Expense</h2>
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="date">Date:</label>
         <input
@@ -183,7 +180,6 @@ const ExpenseTracker = (isLightMode) => {
           onChange={(e) => setDate(e.target.value)}
           required
         />
-
         <label htmlFor="amount">Amount:</label>
         <input
           type="number"
@@ -192,7 +188,6 @@ const ExpenseTracker = (isLightMode) => {
           onChange={(e) => setAmount(e.target.value)}
           required
         />
-
         <label htmlFor="description">Description:</label>
         <input
           type="text"
@@ -201,7 +196,6 @@ const ExpenseTracker = (isLightMode) => {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-
         <label htmlFor="category">Category:</label>
         <select
           id="category"
@@ -217,10 +211,9 @@ const ExpenseTracker = (isLightMode) => {
           <option value="Other">Other</option>
         </select>
         <button type="submit" disabled={totalExpense >= 10000}>
-          {totalExpense >= 10000? "Upgrade to Premium": selectedExpense? "Update"  : "Add"}
+          {totalExpense >= 10000 ? "Upgrade to Premium" : selectedExpense ? "Update" : "Add"}
         </button>
       </form>
-
       <h2>Expenses</h2>
       <table>
         <thead>
@@ -256,7 +249,7 @@ const ExpenseTracker = (isLightMode) => {
           <tr>
             <td colSpan="4">Savings</td>
             <td className={savingsClass}>{savings}</td>
-            <td> <button onClick={downloadExpenses} style={{background:"black"}}>Download Expenses</button></td>
+            <td> <button onClick={downloadExpenses} style={{ background: theme === "light" ? "black" : "white", color: theme === "light" ? "white" : "black" }}>Download Expenses</button></td>
           </tr>
         </tbody>
       </table>

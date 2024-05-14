@@ -1,24 +1,31 @@
-import React, { useReducer } from "react";
-import { useDispatch } from "react-redux"; 
+// WelcomePage.js
+
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./welcomePage.css";
 import ExpenseTracker from "../ExpenseTracker";
-import { logout } from "../Reducer/authSlice"; 
-import themeReducer from "../Reducer/themeReducer";
+import { logout } from "../Reducer/authSlice";
+import { toggleTheme } from "../Reducer/themeReducer";
+import ToggleButton from "../ToggleButton";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token=localStorage.getItem('token')
+  const token = localStorage.getItem('token');
   const isLoggedIn = !!token;
-  const [theme, themeDispatch] = useReducer(themeReducer, "light");
+  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const handleCompleteProfile = (event) => {
     event.preventDefault();
     navigate("/profilepage");
   };
 
-  const handleVeryfyEmail = (e) => {
+  const handleVerifyEmail = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=YOUR_API_KEY', {
@@ -42,33 +49,33 @@ const WelcomePage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    dispatch(logout()); // Dispatch the logout action
+    dispatch(logout());
     navigate('/login');
   };
 
-  const toggleTheme = () => {
-    themeDispatch({ type: "TOGGLE_THEME" });
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme()); // Dispatch toggleTheme action
   };
 
   return (
     <div>
-      <div className={`welcome-page ${theme}`}>
-      <button className="theme-toggle" onClick={toggleTheme}>
-        {theme === "light" ? "Dark Mode" : "Light Mode"}
-      </button>
+      <div className={`welcome-page ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>
         <div className="welcome-header">
           <div className="welcome-title">Welcome to Expense Tracker</div>
-          <div className="profile-incomplete">
-            <button className="complete-button1" onClick={handleVeryfyEmail}>
+          <div className={`profile-incomplete ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>
+            <button className="complete-button1" onClick={handleVerifyEmail}>
               Verify Email
             </button>
             <button className="complete-button1" onClick={handleLogout}>
               Logout
             </button>
-            <div>Your Profile is Incomplete.</div>
+            <div >Your Profile is Incomplete.</div>
             <button className="complete-button" onClick={handleCompleteProfile}>
               Complete now
-            </button>
+            </button>    
+            <div>
+            <ToggleButton isLightMode={theme === "light"} toggleTheme={handleToggleTheme} />
+            </div>
           </div>
         </div>
       </div>

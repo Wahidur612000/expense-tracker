@@ -60,3 +60,75 @@
     background-color: #333;
     color: #f5f5f5;
   }
+
+  /* src/components/welcomePage.css */
+body.light {
+  background-color: white;
+  color: black;
+}
+
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+.toggle-button {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  position: relative;
+  border-radius: 30px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-button .toggle-circle {
+  position: absolute;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.toggle-button .icon {
+  display: none;
+  position: absolute;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+}
+
+.toggle-button .icon.sun {
+  left: 6px;
+}
+
+.toggle-button .icon.moon {
+  right: 6px;
+}
+
+.toggle-button.light {
+  background-color: #ffcc00;
+}
+
+.toggle-button.light .toggle-circle {
+  transform: translateX(0);
+}
+
+.toggle-button.light .icon.sun {
+  display: block;
+}
+
+.toggle-button.dark {
+  background-color: #333;
+}
+
+.toggle-button.dark .toggle-circle {
+  transform: translateX(30px);
+}
+
+.toggle-button.dark .icon.moon {
+  display: block;
+}
