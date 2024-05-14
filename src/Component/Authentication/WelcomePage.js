@@ -1,18 +1,17 @@
-// WelcomePage.js
-
-import React, { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector
+import React, { useReducer } from "react";
+import { useDispatch } from "react-redux"; 
 import { useNavigate } from "react-router-dom";
 import "./welcomePage.css";
 import ExpenseTracker from "../ExpenseTracker";
-import { AuthContext } from "../context/AuthProvider";
-import { logout } from "../Reducer/authSlice"; // Import login and logout actions
+import { logout } from "../Reducer/authSlice"; 
+import themeReducer from "../Reducer/themeReducer";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token=localStorage.getItem('token')
   const isLoggedIn = !!token;
+  const [theme, themeDispatch] = useReducer(themeReducer, "light");
 
   const handleCompleteProfile = (event) => {
     event.preventDefault();
@@ -47,9 +46,16 @@ const WelcomePage = () => {
     navigate('/login');
   };
 
+  const toggleTheme = () => {
+    themeDispatch({ type: "TOGGLE_THEME" });
+  };
+
   return (
     <div>
-      <div className="welcome-page">
+      <div className={`welcome-page ${theme}`}>
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {theme === "light" ? "Dark Mode" : "Light Mode"}
+      </button>
         <div className="welcome-header">
           <div className="welcome-title">Welcome to Expense Tracker</div>
           <div className="profile-incomplete">
