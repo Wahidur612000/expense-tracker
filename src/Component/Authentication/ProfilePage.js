@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useSelector} from "react-redux";
 import './profilePage.css'; 
 
 const ProfilePage = () => {
@@ -101,8 +102,10 @@ const ProfilePage = () => {
     navigate('/login')
   }
 
+  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+
   return (
-    <div className="profile-page">
+    <div className={`profile-page ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>
       <div className="profile-header">
         <div className="quote">Winners never quit, Quitters never win.</div>
         <div className="profile-completion">

@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthProvider';
 import './SignUp.css'; 
 import { useDispatch } from 'react-redux';
 import { login } from '../Reducer/authSlice';
+import { useSelector} from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const loginctx=useContext(AuthContext)
+  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ const Login = () => {
 
   return (
     <div>
-    <div className="container"> 
+    <div className={`container ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}> 
       <div > 
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
