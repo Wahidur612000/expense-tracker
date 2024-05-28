@@ -13,7 +13,6 @@ const ExpenseTracker = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // If there's a selected expense, perform update
     if (selectedExpense) {
       handleUpdate(selectedExpense.id, {
         date: date || selectedExpense.date,
@@ -22,7 +21,6 @@ const ExpenseTracker = () => {
         category: category || selectedExpense.category,
       });
     } else {
-      // Otherwise, perform add expense
       const newExpense = {
         date: date,
         amount: Number(amount),
@@ -70,7 +68,6 @@ const ExpenseTracker = () => {
         console.log("Expense added:", data);
         setExpenses([...expenses, { id: data.name, ...newExpense }]);
         clearForm();
-        alert("Expense added successfully!");
       })
       .catch((error) => console.error("Error adding expense:", error));
   };
@@ -85,14 +82,12 @@ const ExpenseTracker = () => {
       .then((response) => {
         if (response.ok) {
           setExpenses(expenses.filter((expense) => expense.id !== id));
-          alert("Expense deleted successfully!");
         } else {
           throw new Error("Failed to delete expense");
         }
       })
       .catch((error) => {
         console.error("Error deleting expense:", error);
-        alert("Failed to delete expense. Please try again.");
       });
   };
 
@@ -117,14 +112,12 @@ const ExpenseTracker = () => {
           });
           setExpenses(updatedExpenses);
           clearForm();
-          alert("Expense updated successfully!");
         } else {
           throw new Error("Failed to update expense");
         }
       })
       .catch((error) => {
         console.error("Error updating expense:", error);
-        alert("Failed to update expense. Please try again.");
       });
   };
 
@@ -165,7 +158,7 @@ const ExpenseTracker = () => {
     link.click();
   };
 
-  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+  const theme = useSelector((state) => state.theme.mode); 
 
   return (
     <div className={`expense-tracker ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>
@@ -215,44 +208,23 @@ const ExpenseTracker = () => {
         </button>
       </form>
       <h2>Expenses</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Income</th>
-            <th>Expense</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {expenses.map((expense) => (
-            <tr key={expense.id}>
-              <td>{expense.date}</td>
-              <td>{expense.description}</td>
-              <td>{expense.category}</td>
-              <td>{expense.category === "Salary" ? expense.amount : ""}</td>
-              <td>{expense.category !== "Salary" ? expense.amount : ""}</td>
-              <td>
-                <button onClick={() => handleEdit(expense)}>Edit</button>
-                <button onClick={() => handleDelete(expense.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-          <tr>
-            <td colSpan="3">Total</td>
-            <td>{totalIncome}</td>
-            <td>{totalExpense}</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td colSpan="4">Savings</td>
-            <td className={savingsClass}>{savings}</td>
-            <td> <button onClick={downloadExpenses} style={{ background: theme === "light" ? "black" : "white", color: theme === "light" ? "white" : "black" }}>Download Expenses</button></td>
-          </tr>
-        </tbody>
-      </table>
+      <ul>
+        {expenses.map((expense) => (
+          <li key={expense.id} className="expense-item">
+            <span>{expense.date}</span>  <span>{expense.description}</span> {" "}
+            <span>{expense.category}</span>  <span>{expense.category === "Salary" ? expense.amount : ""}</span> {" "}
+            <span>{expense.category !== "Salary" ? expense.amount : ""}</span>
+            <button onClick={() => handleEdit(expense)}>Edit</button>
+            <button onClick={() => handleDelete(expense.id)}>Delete</button>
+          </li>
+        ))}
+        <div>Total Income: {totalIncome}</div>
+        <div>Total Expense: {totalExpense}</div>
+        <div className={savingsClass}>Savings: {savings}</div>
+      </ul>
+      <button onClick={downloadExpenses} style={{ background: theme === "light" ? "black" : "white", color: theme === "light" ? "white" : "black" }}>
+        Download Expenses
+      </button>
     </div>
   );
 };

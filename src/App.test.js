@@ -8,7 +8,6 @@ test('renders SignUp component at root path', () => {
       <App />
     </BrowserRouter>
   );
-  // Use queryAllByText to handle multiple elements with the same text
   const signUpElements = screen.queryAllByText(/Sign Up/i);
   expect(signUpElements.length).toBeGreaterThan(0);
 });

@@ -73,7 +73,7 @@
   .input-group {
     margin-bottom: 10px;
     margin-left: 10px;
-    display: inline;
+    display: flex;
   }
   
   .icon {

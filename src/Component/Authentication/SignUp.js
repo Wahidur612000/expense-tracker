@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Header';
 import './SignUp.css'; 
 
 const SignUp = () => {
@@ -30,7 +29,7 @@ const SignUp = () => {
     })
     .then(response => response.json())
     .then(data => {
-      navigate('/home');
+      navigate('/welcome');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -39,7 +38,6 @@ const SignUp = () => {
 
   return (
     <div>
-      <Header />
     <div className="container"> 
       <div > 
         <h1>Sign Up</h1>

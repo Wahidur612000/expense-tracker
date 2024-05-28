@@ -1,5 +1,5 @@
 .expense-tracker {
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   margin: 20px;
 }
 
@@ -10,8 +10,10 @@ h2 {
 form {
   display: inline-block;
   margin-bottom: 20px;
-  width: 20%;
+  width: 30%;
   border: 2px solid black;
+  padding: 10px;
+  align-items: left;
 }
 
 label {
@@ -19,15 +21,18 @@ label {
   margin-bottom: 5px;
 }
 
+li{
+  list-style-type: none;
+}
+
 input[type="number"],
 input[type="text"],
 select {
-  width: 50%;
+  width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box;
 }
 
 button {
@@ -45,28 +50,6 @@ button:hover {
   background-color: darkblue;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #0b0b0b;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  border: 1px solid white;
-  background-color: rgb(10, 10, 10); 
-  color: white; 
-}
-
-
-/* tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-} */
-
 .positive {
   color: green;
 }
@@ -75,95 +58,63 @@ th {
   color: red;
 }
 
-.premium-alert {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.premium-button {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 100px;
-}
-
-.premium-button:hover {
-  background-color: #218838;
-}
-
-/* src/components/ExpenseTracker.css */
-
-body.light {
-background-color: white;
-color: black;
-}
-
-body.dark {
-background-color: black;
-color: white;
-}
-
 .toggle-button {
-display: inline-block;
-width: 60px;
-height: 30px;
-position: relative;
-border-radius: 30px;
-background-color: #ccc;
-cursor: pointer;
-transition: background-color 0.3s;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  position: relative;
+  border-radius: 30px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .toggle-button .toggle-circle {
-position: absolute;
-top: 2px;
-width: 26px;
-height: 26px;
-border-radius: 50%;
-background-color: white;
-transition: transform 0.3s;
+  position: absolute;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s;
 }
 
 .toggle-button .icon {
-display: none;
-position: absolute;
-top: 6px;
-width: 18px;
-height: 18px;
+  display: none;
+  position: absolute;
+  top: 6px;
+  width: 18px;
+  height: 18px;
 }
 
 .toggle-button .icon.sun {
-left: 6px;
+  left: 6px;
 }
 
 .toggle-button .icon.moon {
-right: 6px;
+  right: 6px;
 }
 
 .toggle-button.light {
-background-color: #ffcc00;
+  background-color: #ffcc00;
 }
 
 .toggle-button.light .toggle-circle {
-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .toggle-button.light .icon.sun {
-display: block;
+  display: block;
 }
 
 .toggle-button.dark {
-background-color: #333;
+  background-color: #333;
 }
 
 .toggle-button.dark .toggle-circle {
-transform: translateX(30px);
+  transform: translateX(30px);
 }
 
 .toggle-button.dark .icon.moon {
-display: block;
+  display: block;
 }
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import './ExpenseTracker.css'; // Ensure this imports your CSS
+import './ExpenseTracker.css';
 
 const ToggleButton = ({ isLightMode, toggleTheme }) => {
   return (
@@ -9,7 +9,7 @@ const ToggleButton = ({ isLightMode, toggleTheme }) => {
     >
       <div className="toggle-circle"></div>
       <div className="icon sun">🌞</div>
-      <div className="icon moon">🌜</div>
+      <div className="icon moon">🌛</div>
     </div>
   );
 };

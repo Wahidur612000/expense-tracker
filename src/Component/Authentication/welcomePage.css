@@ -19,20 +19,14 @@
 .complete-button {
   background-color: blue;
   color: white;
-  border: none;
   padding: 10px 20px;
-  cursor: pointer;
   border-radius: 20px;
-  height: -10px;
 }
 .complete-button1 {
   background-color: rgb(247, 6, 6);
   color: white;
-  border: none;
   padding: 10px 20px;
-  cursor: pointer;
   border-radius: 20px;
-  height: -10px;
   margin-left: 10px;
 }
 
@@ -55,13 +49,11 @@
   color: #333;
 }
 
-/* Dark mode styles */
 .welcome-page.dark-mode {
   background-color: #333;
   color: #f5f5f5;
 }
 
-/* src/components/welcomePage.css */
 body.light {
 background-color: white;
 color: black;

@@ -3,7 +3,7 @@ import ExpenseTracker from "./ExpenseTracker";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import store from "./Reducer/store"; // Make sure the correct path to the Redux store is imported
+import store from "./Reducer/store"; 
 
 test("adds a new expense entry on form submission", async () => {
     render(
@@ -15,10 +15,8 @@ test("adds a new expense entry on form submission", async () => {
     const submitButton = screen.getByRole("button", { name: /Add/i });
     userEvent.click(submitButton);
 
-    // Wait for the confirmation message or a specific UI element after submission
     await screen.findByText(/Expense added successfully!/i);
 
-    // Assertion
     expect(screen.queryByText(/Expense added successfully!/i)).toBeInTheDocument();
 });
 
@@ -38,14 +36,12 @@ const mockStore = configureStore(middlewares);
 
 const store = mockStore({
   theme: { mode: "light" },
-  // Add any other initial states if needed
 });
 
-// Mock the global fetch function
 global.fetch = jest.fn((url, options) => {
   if (options.method === "POST") {
     return Promise.resolve({
-      json: () => Promise.resolve({ name: "1" }), // Mock the response for adding an expense
+      json: () => Promise.resolve({ name: "1" }), 
     });
   } else {
     return Promise.resolve({
@@ -56,7 +52,7 @@ global.fetch = jest.fn((url, options) => {
           description: "Groceries",
           category: "Food"
         }
-      }) // Mock the response for fetching expenses
+      })
     });
   }
 });
@@ -68,7 +64,6 @@ test("adds a new expense entry on form submission", async () => {
     </Provider>
   );
 
-  // Fill out the form
   fireEvent.change(screen.getByLabelText(/date/i), {
     target: { value: "2024-05-18" },
   });
@@ -85,10 +80,8 @@ test("adds a new expense entry on form submission", async () => {
   const submitButton = screen.getByRole("button", { name: /Add/i });
   userEvent.click(submitButton);
 
-  // Wait for the alert to be called and the expense to be added
   await waitFor(() => expect(global.fetch).toHaveBeenCalled());
 
-  // Check that the new expense is in the document
   expect(screen.getByText("2024-05-18")).toBeInTheDocument();
   expect(screen.getByText("Groceries")).toBeInTheDocument();
   expect(screen.getByText("Food")).toBeInTheDocument();

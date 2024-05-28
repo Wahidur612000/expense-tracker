@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
+import { logout } from "../Reducer/authSlice";
 import './profilePage.css'; 
 
 const ProfilePage = () => {
   const [fullName, setFullName] = useState('');
   const [photoUrl, setPhotoUrl] = useState('');
   const navigate=useNavigate();
+  const dispatch = useDispatch();
   
 
   const handleUpdateProfile = () => {
@@ -45,7 +47,6 @@ const ProfilePage = () => {
       console.log("Complete profile page---", data);
     })
     .catch(error => {
-      // Handle error
       console.error('Error updating profile:', error);
     });
     setFullName('')
@@ -92,17 +93,16 @@ const ProfilePage = () => {
       }
     })
     .catch(error => {
-      // Handle error
       console.error('Error updating profile:', error);
     });
   };
 
   const handleLogout=()=>{
-    localStorage.removeItem('token');
+    dispatch(logout());
     navigate('/login')
   }
 
-  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+  const theme = useSelector((state) => state.theme.mode); 
 
   return (
     <div className={`profile-page ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}>

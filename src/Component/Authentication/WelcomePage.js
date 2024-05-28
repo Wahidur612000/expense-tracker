@@ -1,5 +1,3 @@
-// WelcomePage.js
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,9 +10,9 @@ import ToggleButton from "../ToggleButton";
 const WelcomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
-  const isLoggedIn = !!token;
-  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
+  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
+  console.log('inwelcomepage',isLoggedIn)
+  const theme = useSelector((state) => state.theme.mode);
 
   useEffect(() => {
     document.body.className = theme;
@@ -48,13 +46,12 @@ const WelcomePage = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
     dispatch(logout());
     navigate('/login');
   };
 
   const handleToggleTheme = () => {
-    dispatch(toggleTheme()); // Dispatch toggleTheme action
+    dispatch(toggleTheme()); 
   };
 
   return (

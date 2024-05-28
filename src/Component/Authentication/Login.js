@@ -1,18 +1,14 @@
-import React, { useState,useContext } from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthProvider';
 import './SignUp.css'; 
 import { useDispatch } from 'react-redux';
 import { login } from '../Reducer/authSlice';
-import { useSelector} from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const theme = useSelector((state) => state.theme.mode); // Get the theme mode from Redux store
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +26,7 @@ const Login = () => {
     })
     .then(response => response.json())
     .then(data => {
-      //loginctx.loginHandler(data.idToken);
+      localStorage.setItem("login", true);
       localStorage.setItem("token", data.idToken);
       console.log('inlogin',data)
       dispatch(login());
@@ -42,8 +38,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-    <div className={`container ${theme === "light" ? "bg-light text-dark" : "bg-dark text-light"}`}> 
+    
+    <div className="container" > 
       <div > 
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
@@ -72,7 +68,6 @@ const Login = () => {
           <a href="/signup">Don't have an account? Sign Up</a>
         </div>
       </div>
-    </div>
     </div>
   );
 };

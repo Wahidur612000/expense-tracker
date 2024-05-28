@@ -1,48 +1,34 @@
-body {
-    background-image: url("https://img.freepik.com/free-vector/blue-curve-frame-template_53876-116707.jpg?size=626&ext=jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-left: 500%;
-    width: 100%;
-  }
-  .Grid {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    margin-top: 200px;
-    width: 300px;
-    text-align: center;
-    padding: 30px; 
-    border-radius: 8px;
-    margin-left: 500%; 
-  }
-  .container h1 {
-      margin-bottom: 20px; 
-    }
-    
-    .container form {
-      margin-bottom: 30px;
-      border: rgb(180, 12, 12); 
-    }
-    
-    .container form input {
-      margin-bottom: 10px; 
-      padding: 15px;
-    }
-    
-    .container div {
-      margin-top: 20px; 
-    }
-  
-    .container form button {
-      margin-top: 10px; 
-      width: 60%; 
-      background-color: blue; 
-      color: white; 
-      padding: 10px;
-      border-radius: 20px; 
-    }
+.container {
+  margin-top: 200px;
+  width: 300px;
+  text-align: center;
+  padding: 30px;
+  border-radius: 8px;
+  margin-left: 500%;
+}
+.container h1 {
+  margin-bottom: 20px;
+}
+
+.container form {
+  margin-bottom: 30px;
+  border: rgb(180, 12, 12);
+}
+
+.container form input {
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.container div {
+  margin-top: 20px;
+}
+
+.container form button {
+  margin-top: 10px;
+  width: 60%;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
