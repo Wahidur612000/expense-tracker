@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    
+    <div className="full-container">
     <div className="container" > 
       <div > 
         <h1>Login</h1>
@@ -58,9 +58,6 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <div>
-            <a href="/forgotpassword" style={{color: 'red'}}>Forgot Password?</a>
-          </div>
           <br />
           <button type="submit">Login</button>
         </form>
@@ -68,6 +65,7 @@ const Login = () => {
           <a href="/signup">Don't have an account? Sign Up</a>
         </div>
       </div>
+    </div>
     </div>
   );
 };

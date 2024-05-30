@@ -37,7 +37,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="full-container">
     <div className="container"> 
       <div > 
         <h1>Sign Up</h1>
@@ -69,7 +69,7 @@ const SignUp = () => {
           <button type="submit">Sign Up</button>
         </form>
         <div>
-          <a href="/login">Have an account? Login</a>
+          <a href="/login" style={{marginTop:"-50px"}}>Have an account? Login</a>
         </div>
       </div>
     </div>
