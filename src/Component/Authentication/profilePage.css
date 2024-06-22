@@ -1,0 +1,88 @@
+.profile-page {
+    padding: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .quote {
+    font-size: 18px;
+  }
+  
+  .profile-completion {
+    display: flex;
+    align-items: center;
+  }
+  
+  .completion-text {
+    margin-right: 20px;
+  }
+  
+  .complete-now {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .complete-now1 {
+    background-color: rgb(252, 8, 8);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .complete-now2 {
+    background-color: rgb(56, 151, 27);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .red-line {
+    height: 2px;
+    background-color: red;
+    margin-bottom: 20px;
+  }
+  
+  .profile-form {
+    background-color: #fffffff0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 700px;
+    margin-left: 700px;
+    border: solid black;
+  }
+  
+  .form-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    display: flex;
+  }
+  
+  .icon {
+    width: 20px;
+    margin-right: 10px;
+  }
+
+  .button-group {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  

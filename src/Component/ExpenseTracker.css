@@ -1,0 +1,120 @@
+.expense-tracker {
+  font-family: Arial;
+  margin: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+form {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 30%;
+  border: 2px solid black;
+  padding: 10px;
+  align-items: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+li{
+  list-style-type: none;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: darkblue;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.toggle-button {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  position: relative;
+  border-radius: 30px;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-button .toggle-circle {
+  position: absolute;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.toggle-button .icon {
+  display: none;
+  position: absolute;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+}
+
+.toggle-button .icon.sun {
+  left: 6px;
+}
+
+.toggle-button .icon.moon {
+  right: 6px;
+}
+
+.toggle-button.light {
+  background-color: #ffcc00;
+}
+
+.toggle-button.light .toggle-circle {
+  transform: translateX(0);
+}
+
+.toggle-button.light .icon.sun {
+  display: block;
+}
+
+.toggle-button.dark {
+  background-color: #333;
+}
+
+.toggle-button.dark .toggle-circle {
+  transform: translateX(30px);
+}
+
+.toggle-button.dark .icon.moon {
+  display: block;
+}

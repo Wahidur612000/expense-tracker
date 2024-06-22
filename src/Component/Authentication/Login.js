@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; 
+import { useDispatch } from 'react-redux';
+import { login } from '../Reducer/authSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=YOUR_API_KEY', {
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -23,7 +26,11 @@ const Login = () => {
     })
     .then(response => response.json())
     .then(data => {
-      navigate('/');
+      localStorage.setItem("login", true);
+      localStorage.setItem("token", data.idToken);
+      console.log('inlogin',data)
+      dispatch(login());
+      navigate('/welcome');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -31,8 +38,8 @@ const Login = () => {
   };
 
   return (
-    <grid className="Grid">
-    <div className="container"> 
+    <div className="full-container">
+    <div className="container" > 
       <div > 
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
@@ -55,11 +62,11 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
         <div>
-          <a href="#">Don't have an account? Sign Up</a>
+          <a href="/signup">Don't have an account? Sign Up</a>
         </div>
       </div>
     </div>
-    </grid>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const SignUp = () => {
       return;
     }
     
-    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=YOUR_API_KEY', {
+    fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -29,7 +29,7 @@ const SignUp = () => {
     })
     .then(response => response.json())
     .then(data => {
-      navigate('/');
+      navigate('/welcome');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -37,7 +37,7 @@ const SignUp = () => {
   };
 
   return (
-    <grid className="Grid">
+    <div className="full-container">
     <div className="container"> 
       <div > 
         <h1>Sign Up</h1>
@@ -69,11 +69,11 @@ const SignUp = () => {
           <button type="submit">Sign Up</button>
         </form>
         <div>
-          <a href="/login">Have an account? Login</a>
+          <a href="/login" style={{marginTop:"-50px"}}>Have an account? Login</a>
         </div>
       </div>
     </div>
-    </grid>
+    </div>
   );
 };
 

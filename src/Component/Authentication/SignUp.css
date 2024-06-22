@@ -1,49 +1,52 @@
-body {
-  background-image: url("https://img.freepik.com/free-vector/blue-curve-frame-template_53876-116707.jpg?size=626&ext=jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
+body, html {
   height: 100%;
-  display: flex;
+  margin: 0;
 }
-.Grid {
+
+.full-container {
+  height: 100vh; 
+  width: 100vw; 
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100vh;
+  justify-content: center; 
+  align-items: center; 
+  background-image: url('https://t4.ftcdn.net/jpg/05/71/83/47/360_F_571834789_ujYbUnH190iUokdDhZq7GXeTBRgqYVwa.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
 }
 
 .container {
+  margin-top: 200px;
   width: 300px;
   text-align: center;
-  border: 1px solid #ccc;
-  padding: 30px; 
+  padding: 30px;
   border-radius: 8px;
-  margin-left: 500%; 
+  margin-left: 500%;
 }
 .container h1 {
-    margin-bottom: 20px; 
-  }
-  
-  .container form {
-    margin-bottom: 20px; 
-  }
-  
-  .container form input {
-    margin-bottom: 20px; 
-    padding: 15px;
-  }
-  
-  .container div {
-    margin-top: 20px; 
-  }
+  margin-bottom: 20px;
+  color: yellow;
+}
 
-  .container form button {
-    margin-top: 10px; /* Add spacing above the button */
-    width: 100%; /* Make the button cover the entire width */
-    background-color: blue; /* Change button color to blue */
-    color: white; /* Change button text color to white */
-    border: none; /* Remove button border */
-    padding: 10px; /* Add padding to the button */
-    border-radius: 20px; /* Make the button curved at the ends */
-  }
+.container form {
+  margin-bottom: 30px;
+  border: rgb(180, 12, 12);
+}
+
+.container form input {
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.container div {
+  margin-top: 20px;
+}
+
+.container form button {
+  margin-top: 10px;
+  width: 60%;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
